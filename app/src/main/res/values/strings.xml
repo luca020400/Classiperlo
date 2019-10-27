@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Classiperlo</string>
+    <string name="title_cp">Classiperlo</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!-- Dialog action: dismiss -->
+    <string name="dismiss">Dismiss</string>
+
+    <!-- Permission error dialog: title -->
+    <string name="permission_error_title">Permission error</string>
+    <!-- Permission error dialog: message for denied storage access-->
+    <string name="permission_error_storage">Browser needs storage access to download files. Please grant it to save files from the web</string>
+    <!-- Permission error dialog: button that triggers permission request again -->
+    <string name="permission_error_ask_again">Ask again</string>
+    <!-- Permission error snackBar: the permission has been denied until user enables it in settings -->
+    <string name="permission_error_forever">Permission denied permanently. Please grant it in settings</string>
+
+    <!-- Download dialog: title -->
+    <string name="download_title">Download file</string>
+    <!-- Download dialog: message -->
+    <string name="download_message">Do you want to download %1$s?</string>
+    <!-- Download dialog: button that starts the download -->
+    <string name="download_positive">Download</string>
+</resources>
