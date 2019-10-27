@@ -46,7 +46,7 @@ dependencies {
     implementation(Libraries.constraintLayout)
     implementation(Libraries.ktxCore)
     implementation(Libraries.lifecycle)
-    implementation(Libraries.vectordrawable)
+    implementation(Libraries.vectorDrawable)
 
     // Material
     implementation(Libraries.material)

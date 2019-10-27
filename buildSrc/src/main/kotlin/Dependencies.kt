@@ -29,7 +29,7 @@ object Libraries {
         const val constraintLayout = "1.1.3"
         const val ktx = "1.1.0"
         const val lifecycle = "2.1.0"
-        const val vectordrawable = "1.1.0"
+        const val vectorDrawable = "1.1.0"
         const val material = "1.0.0"
         const val navigation = "2.1.0"
     }
@@ -40,7 +40,7 @@ object Libraries {
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val ktxCore = "androidx.core:core-ktx:${Versions.ktx}"
     const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
-    const val vectordrawable = "androidx.vectordrawable:vectordrawable:${Versions.vectordrawable}"
+    const val vectorDrawable = "androidx.vectordrawable:vectordrawable:${Versions.vectorDrawable}"
     const val material = "com.google.android.material:material:${Versions.material}"
     const val navigationFragment = "androidx.navigation:navigation-fragment:${Versions.navigation}"
     const val navigationFragmentKtx =
