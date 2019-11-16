@@ -5,12 +5,17 @@ import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class DividerItemDecoration(context: Context, orientation: Int) : RecyclerView.ItemDecoration() {
+class DividerItemDecoration(context: Context, orientation: Orientation) :
+    RecyclerView.ItemDecoration() {
     private var mDivider: Drawable
-    private var mOrientation: Int = 0
+    private var mOrientation: Orientation = Orientation.Vertical
+
+    enum class Orientation {
+        Horizontal,
+        Vertical
+    }
 
     init {
         val a = context.obtainStyledAttributes(ATTRS)
@@ -21,13 +26,15 @@ class DividerItemDecoration(context: Context, orientation: Int) : RecyclerView.I
         setOrientation(orientation)
     }
 
-    private fun setOrientation(orientation: Int) {
-        require(orientation == HORIZONTAL_LIST || orientation == VERTICAL_LIST) { "invalid orientation" }
+    private fun setOrientation(orientation: Orientation) {
+        require(
+            orientation == Orientation.Horizontal || orientation == Orientation.Vertical
+        ) { "invalid orientation" }
         mOrientation = orientation
     }
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-        if (mOrientation == VERTICAL_LIST) {
+        if (mOrientation == Orientation.Vertical) {
             drawVertical(c, parent)
         } else {
             drawHorizontal(c, parent)
@@ -72,7 +79,7 @@ class DividerItemDecoration(context: Context, orientation: Int) : RecyclerView.I
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        if (mOrientation == VERTICAL_LIST) {
+        if (mOrientation == Orientation.Vertical) {
             outRect.set(0, 0, 0, mDivider.intrinsicHeight)
         } else {
             outRect.set(0, 0, mDivider.intrinsicWidth, 0)
@@ -81,8 +88,5 @@ class DividerItemDecoration(context: Context, orientation: Int) : RecyclerView.I
 
     companion object {
         private val ATTRS = intArrayOf(android.R.attr.listDivider)
-
-        const val HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL
-        const val VERTICAL_LIST = LinearLayoutManager.VERTICAL
     }
 }

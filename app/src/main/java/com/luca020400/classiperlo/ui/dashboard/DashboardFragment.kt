@@ -28,7 +28,12 @@ class DashboardFragment : Fragment() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
-            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL_LIST))
+            addItemDecoration(
+                DividerItemDecoration(
+                    context,
+                    DividerItemDecoration.Orientation.Vertical
+                )
+            )
         }
         val adapter = DashboardAdapter {
             // TODO Load page
