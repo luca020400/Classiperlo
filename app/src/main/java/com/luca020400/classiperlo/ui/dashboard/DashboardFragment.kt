@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.luca020400.classiperlo.R
+import com.luca020400.classiperlo.utils.DividerItemDecoration
 
 class DashboardFragment : Fragment() {
 
@@ -27,6 +28,7 @@ class DashboardFragment : Fragment() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL_LIST))
         }
         val adapter = DashboardAdapter {
             // TODO Load page
