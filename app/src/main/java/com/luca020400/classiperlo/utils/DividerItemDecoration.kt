@@ -17,43 +17,18 @@ class DividerItemDecoration(context: Context, private val orientation: Orientati
     }
 
     init {
-        val a = context.obtainStyledAttributes(ATTRS)
+        val a = context.obtainStyledAttributes(intArrayOf(android.R.attr.listDivider))
         val drawable = a.getDrawable(0)
         require(drawable != null) { "invalid drawable" }
         mDivider = drawable
         a.recycle()
     }
 
-    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-        when (orientation) {
-            Orientation.Horizontal -> drawHorizontal(c, parent)
-            Orientation.Vertical -> drawVertical(c, parent)
-        }
-    }
-
-    private fun drawVertical(c: Canvas, parent: RecyclerView) {
-        val left = parent.paddingLeft
-        val right = parent.width - parent.paddingRight
-
-        val childCount = parent.childCount
-        for (i in 0 until childCount) {
-            val child = parent.getChildAt(i)
-            val params = child
-                .layoutParams as RecyclerView.LayoutParams
-            val top = child.bottom + params.bottomMargin
-            val bottom = top + mDivider.intrinsicHeight
-            mDivider.setBounds(left, top, right, bottom)
-            mDivider.draw(c)
-        }
-    }
-
     private fun drawHorizontal(c: Canvas, parent: RecyclerView) {
         val top = parent.paddingTop
         val bottom = parent.height - parent.paddingBottom
 
-        val childCount = parent.childCount
-        for (i in 0 until childCount) {
-            val child = parent.getChildAt(i)
+        for (child in parent.children) {
             val params = child
                 .layoutParams as RecyclerView.LayoutParams
             val left = child.right + params.rightMargin
@@ -63,19 +38,33 @@ class DividerItemDecoration(context: Context, private val orientation: Orientati
         }
     }
 
+    private fun drawVertical(c: Canvas, parent: RecyclerView) {
+        val left = parent.paddingLeft
+        val right = parent.width - parent.paddingRight
+
+        for (child in parent.children) {
+            val params = child
+                .layoutParams as RecyclerView.LayoutParams
+            val top = child.bottom + params.bottomMargin
+            val bottom = top + mDivider.intrinsicHeight
+            mDivider.setBounds(left, top, right, bottom)
+            mDivider.draw(c)
+        }
+    }
+
+    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) =
+        when (orientation) {
+            Orientation.Horizontal -> drawHorizontal(c, parent)
+            Orientation.Vertical -> drawVertical(c, parent)
+        }
+
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
         parent: RecyclerView,
         state: RecyclerView.State
-    ) {
-        when (orientation) {
-            Orientation.Horizontal -> outRect.set(0, 0, mDivider.intrinsicWidth, 0)
-            Orientation.Vertical -> outRect.set(0, 0, 0, mDivider.intrinsicHeight)
-        }
-    }
-
-    companion object {
-        private val ATTRS = intArrayOf(android.R.attr.listDivider)
+    ) = when (orientation) {
+        Orientation.Horizontal -> outRect.set(0, 0, mDivider.intrinsicWidth, 0)
+        Orientation.Vertical -> outRect.set(0, 0, 0, mDivider.intrinsicHeight)
     }
 }
