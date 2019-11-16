@@ -7,10 +7,9 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class DividerItemDecoration(context: Context, orientation: Orientation) :
+class DividerItemDecoration(context: Context, private val orientation: Orientation) :
     RecyclerView.ItemDecoration() {
     private val mDivider: Drawable
-    private val mOrientation = orientation
 
     enum class Orientation {
         Horizontal,
@@ -22,17 +21,13 @@ class DividerItemDecoration(context: Context, orientation: Orientation) :
         val drawable = a.getDrawable(0)
         require(drawable != null) { "invalid drawable" }
         mDivider = drawable
-        require(
-            mOrientation == Orientation.Horizontal || mOrientation == Orientation.Vertical
-        ) { "invalid orientation" }
         a.recycle()
     }
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-        if (mOrientation == Orientation.Vertical) {
-            drawVertical(c, parent)
-        } else {
-            drawHorizontal(c, parent)
+        when (orientation) {
+            Orientation.Horizontal -> drawHorizontal(c, parent)
+            Orientation.Vertical -> drawVertical(c, parent)
         }
     }
 
@@ -74,10 +69,9 @@ class DividerItemDecoration(context: Context, orientation: Orientation) :
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        if (mOrientation == Orientation.Vertical) {
-            outRect.set(0, 0, 0, mDivider.intrinsicHeight)
-        } else {
-            outRect.set(0, 0, mDivider.intrinsicWidth, 0)
+        when (orientation) {
+            Orientation.Horizontal -> outRect.set(0, 0, mDivider.intrinsicWidth, 0)
+            Orientation.Vertical -> outRect.set(0, 0, 0, mDivider.intrinsicHeight)
         }
     }
 
