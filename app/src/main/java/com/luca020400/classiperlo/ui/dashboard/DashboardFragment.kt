@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.luca020400.classiperlo.R
 
 class DashboardFragment : Fragment() {
@@ -22,9 +23,17 @@ class DashboardFragment : Fragment() {
         dashboardViewModel =
             ViewModelProviders.of(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_cp)
-        dashboardViewModel.text.observe(this, Observer {
-            textView.text = it
+        val recyclerView: RecyclerView = root.findViewById(R.id.recycler_view_cp)
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+        }
+        val adapter = DashboardAdapter {
+            // TODO Load page
+        }
+        recyclerView.adapter = adapter
+        dashboardViewModel.data.observe(this, Observer {
+            adapter.data = it
         })
         return root
     }
