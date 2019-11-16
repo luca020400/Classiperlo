@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class DividerItemDecoration(context: Context, orientation: Orientation) :
     RecyclerView.ItemDecoration() {
-    private var mDivider: Drawable
-    private var mOrientation: Orientation = Orientation.Vertical
+    private val mDivider: Drawable
+    private val mOrientation = orientation
 
     enum class Orientation {
         Horizontal,
@@ -22,15 +22,10 @@ class DividerItemDecoration(context: Context, orientation: Orientation) :
         val drawable = a.getDrawable(0)
         require(drawable != null) { "invalid drawable" }
         mDivider = drawable
-        a.recycle()
-        setOrientation(orientation)
-    }
-
-    private fun setOrientation(orientation: Orientation) {
         require(
-            orientation == Orientation.Horizontal || orientation == Orientation.Vertical
+            mOrientation == Orientation.Horizontal || mOrientation == Orientation.Vertical
         ) { "invalid orientation" }
-        mOrientation = orientation
+        a.recycle()
     }
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
