@@ -52,8 +52,6 @@ dependencies {
     implementation(Libraries.material)
 
     // Navigation
-    implementation(Libraries.navigationFragment)
     implementation(Libraries.navigationFragmentKtx)
-    implementation(Libraries.navigationUi)
     implementation(Libraries.navigationUiKtx)
 }
