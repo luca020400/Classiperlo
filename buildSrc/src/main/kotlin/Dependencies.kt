@@ -26,7 +26,7 @@ object AndroidSdk {
 object Libraries {
     private object Versions {
         const val appcompat = "1.1.0"
-        const val constraintLayout = "1.1.3"
+        const val constraintLayout = "2.0.0-beta2"
         const val ktx = "1.1.0"
         const val lifecycle = "2.1.0"
         const val vectorDrawable = "1.1.0"

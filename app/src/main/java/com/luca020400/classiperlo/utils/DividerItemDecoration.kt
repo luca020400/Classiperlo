@@ -30,8 +30,7 @@ class DividerItemDecoration(context: Context, private val orientation: Orientati
         val bottom = parent.height - parent.paddingBottom
 
         for (child in parent.children) {
-            val params = child
-                .layoutParams as RecyclerView.LayoutParams
+            val params = child.layoutParams as RecyclerView.LayoutParams
             val left = child.right + params.rightMargin
             val right = left + mDivider.intrinsicHeight
             mDivider.setBounds(left, top, right, bottom)
@@ -44,8 +43,7 @@ class DividerItemDecoration(context: Context, private val orientation: Orientati
         val right = parent.width - parent.paddingRight
 
         for (child in parent.children) {
-            val params = child
-                .layoutParams as RecyclerView.LayoutParams
+            val params = child.layoutParams as RecyclerView.LayoutParams
             val top = child.bottom + params.bottomMargin
             val bottom = top + mDivider.intrinsicHeight
             mDivider.setBounds(left, top, right, bottom)
