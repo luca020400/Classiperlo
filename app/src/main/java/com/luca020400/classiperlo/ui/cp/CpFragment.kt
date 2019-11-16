@@ -9,15 +9,15 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.luca020400.classiperlo.MainActivity
 import com.luca020400.classiperlo.R
 import com.luca020400.classiperlo.utils.IOnBackPressed
 
 class CpFragment : Fragment(), IOnBackPressed {
 
-    private lateinit var homeViewModel: CpViewModel
+    private val cpViewModel by viewModels<CpViewModel>()
     private lateinit var webView: WebView
 
     override fun onCreateView(
@@ -25,8 +25,6 @@ class CpFragment : Fragment(), IOnBackPressed {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(CpViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_cp, container, false)
         webView = root.findViewById(R.id.webview_cp)
         webView.apply {
@@ -53,7 +51,7 @@ class CpFragment : Fragment(), IOnBackPressed {
                 setGeolocationEnabled(true)
             }
         }
-        homeViewModel.url.observe(this, Observer {
+        cpViewModel.url.observe(this, Observer {
             webView.loadUrl(it)
         })
         return root
