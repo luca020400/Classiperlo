@@ -1,13 +1,13 @@
 package com.luca020400.classiperlo.ui.dashboard
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import kotlinx.coroutines.Dispatchers
+import org.jsoup.Jsoup
 
 class DashboardViewModel : ViewModel() {
-
-    private val _data = MutableLiveData<List<String>>().apply {
-        value = listOf("2018/2019", "2019/2020")
+    val data = liveData(Dispatchers.IO) {
+        val doc = Jsoup.connect("http://www.classiperlo.altervista.org/radar.html").get()
+        emit(doc.select("body > p > strong").map { it.text() })
     }
-    val data: LiveData<List<String>> = _data
 }

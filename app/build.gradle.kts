@@ -46,6 +46,7 @@ dependencies {
     implementation(Libraries.constraintLayout)
     implementation(Libraries.ktxCore)
     implementation(Libraries.lifecycle)
+    implementation(Libraries.liveData)
     implementation(Libraries.vectorDrawable)
 
     // Material
@@ -54,4 +55,7 @@ dependencies {
     // Navigation
     implementation(Libraries.navigationFragmentKtx)
     implementation(Libraries.navigationUiKtx)
+
+    // jsoup
+    implementation(Libraries.jsoup)
 }
