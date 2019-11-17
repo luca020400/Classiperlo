@@ -51,7 +51,7 @@ class CpFragment : Fragment(), IOnBackPressed {
                 setGeolocationEnabled(true)
             }
         }
-        cpViewModel.url.observe(this, Observer {
+        cpViewModel.url.observe(viewLifecycleOwner, Observer {
             webView.loadUrl(it)
         })
         return root

@@ -37,7 +37,7 @@ class DashboardFragment : Fragment() {
             // TODO Load page
         }
         recyclerView.adapter = adapter
-        dashboardViewModel.data.observe(this, Observer {
+        dashboardViewModel.data.observe(viewLifecycleOwner, Observer {
             adapter.data = it
         })
         return root
