@@ -19,7 +19,7 @@ import com.luca020400.classiperlo.R
 
 class WebviewFragment : Fragment() {
 
-    private val cpViewModel by viewModels<WebviewViewModel>()
+    private val webviewViewModel by viewModels<WebviewViewModel>()
     private val webviewFragmentArgs by navArgs<WebviewFragmentArgs>()
     private lateinit var webView: WebView
 
@@ -62,11 +62,11 @@ class WebviewFragment : Fragment() {
                 setGeolocationEnabled(true)
             }
         }
-        cpViewModel.url.observe(viewLifecycleOwner, Observer {
+
+        webviewViewModel.url.observe(viewLifecycleOwner, Observer {
             webView.loadUrl("http://www.classiperlo.altervista.org/$it")
         })
-
-        cpViewModel.url.value = webviewFragmentArgs.url
+        webviewViewModel.url.value = webviewFragmentArgs.url
         return root
     }
 }
