@@ -1,4 +1,4 @@
-package com.luca020400.classiperlo.ui.dashboard
+package com.luca020400.classiperlo.ui.cp
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.luca020400.classiperlo.R
 import com.luca020400.classiperlo.classes.DataItem
 
-class DashboardAdapter :
-    RecyclerView.Adapter<DashboardClassHolder>() {
+class CpAdapter :
+    RecyclerView.Adapter<CpClassHolder>() {
     private val _data = mutableListOf<DataItem>()
     var data: Collection<DataItem>
         set(data) {
@@ -18,15 +18,15 @@ class DashboardAdapter :
         }
         get() = _data
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = DashboardClassHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CpClassHolder(
         LayoutInflater.from(parent.context).inflate(
-            R.layout.adapter_dashboard,
+            R.layout.adapter_cp,
             parent,
             false
         )
     )
 
-    override fun onBindViewHolder(holder: DashboardClassHolder, position: Int) =
+    override fun onBindViewHolder(holder: CpClassHolder, position: Int) =
         holder.bind(_data[position])
 
     override fun getItemCount() = _data.size

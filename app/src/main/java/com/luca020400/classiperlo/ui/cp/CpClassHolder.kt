@@ -1,4 +1,4 @@
-package com.luca020400.classiperlo.ui.dashboard
+package com.luca020400.classiperlo.ui.cp
 
 import android.os.Bundle
 import android.view.View
@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.luca020400.classiperlo.R
 import com.luca020400.classiperlo.classes.DataItem
 
-class DashboardClassHolder(view: View) : RecyclerView.ViewHolder(view) {
+class CpClassHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(item: DataItem) {
-        itemView.findViewById<TextView>(R.id.text_dashboard).text = item.name
+        itemView.findViewById<TextView>(R.id.text_cp).text = item.name
         val bundle = Bundle().also { it.putString("url", item.url) }
         itemView.setOnClickListener(
             Navigation.createNavigateOnClickListener(

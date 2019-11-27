@@ -22,7 +22,7 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val recyclerView: RecyclerView = root.findViewById(R.id.recycler_view_cp)
+        val recyclerView: RecyclerView = root.findViewById(R.id.recycler_view_dashboard)
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
@@ -33,9 +33,7 @@ class DashboardFragment : Fragment() {
                 )
             )
         }
-        val adapter = DashboardAdapter {
-            // TODO Load page
-        }
+        val adapter = DashboardAdapter()
         recyclerView.adapter = adapter
         dashboardViewModel.data.observe(viewLifecycleOwner, Observer {
             adapter.data = it
