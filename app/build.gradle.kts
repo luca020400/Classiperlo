@@ -48,7 +48,6 @@ dependencies {
     implementation(Libraries.ktxCore)
     implementation(Libraries.lifecycle)
     implementation(Libraries.liveData)
-    implementation(Libraries.vectorDrawable)
 
     // Material
     implementation(Libraries.material)
