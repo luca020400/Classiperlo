@@ -8,14 +8,15 @@ import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.luca020400.classiperlo.MainActivity
 import com.luca020400.classiperlo.R
-import com.luca020400.classiperlo.utils.IOnBackPressed
 
-class WebviewFragment : Fragment(), IOnBackPressed {
+class WebviewFragment : Fragment() {
 
     private val cpViewModel by viewModels<WebviewViewModel>()
     private lateinit var webView: WebView
@@ -25,6 +26,14 @@ class WebviewFragment : Fragment(), IOnBackPressed {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            if (webView.canGoBack()) {
+                webView.goBack()
+            } else {
+                findNavController().popBackStack()
+            }
+        }
+
         val root = inflater.inflate(R.layout.fragment_webview, container, false)
         webView = root.findViewById(R.id.webview_webview)
         webView.apply {
@@ -57,12 +66,4 @@ class WebviewFragment : Fragment(), IOnBackPressed {
         cpViewModel.url.value = arguments?.getString("url")
         return root
     }
-
-    override fun onBackPressed() =
-        if (webView.canGoBack()) {
-            webView.goBack()
-            true
-        } else {
-            false
-        }
 }

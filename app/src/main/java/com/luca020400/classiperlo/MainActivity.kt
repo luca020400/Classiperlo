@@ -19,7 +19,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
-import com.luca020400.classiperlo.utils.IOnBackPressed
 
 class MainActivity : AppCompatActivity() {
     private val sTAG = MainActivity::class.java.simpleName
@@ -44,20 +43,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
-
-    override fun onBackPressed() {
-        supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.let {
-            it.childFragmentManager.primaryNavigationFragment?.let { fragment ->
-                if (fragment is IOnBackPressed) {
-                    if (!fragment.onBackPressed()) {
-                        super.onBackPressed()
-                    }
-                } else {
-                    super.onBackPressed()
-                }
-            }
-        }
     }
 
     override fun onRequestPermissionsResult(
