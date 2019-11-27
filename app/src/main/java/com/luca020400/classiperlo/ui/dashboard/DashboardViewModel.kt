@@ -9,9 +9,11 @@ import org.jsoup.Jsoup
 class DashboardViewModel : ViewModel() {
     val data = liveData(Dispatchers.IO) {
         val doc = Jsoup.connect("http://www.classiperlo.altervista.org/radar.html").get()
-        doc.select("body > p > strong").forEachIndexed { index, element ->
+        val years = doc.select("body > p > strong").reversed()
+        val classes = doc.select("body > ul").reversed()
+        years.forEachIndexed { index, element ->
             emit(listOf(DataItem.Year(element.text())))
-            emit(doc.select("body > ul")[index].select("li").map {
+            emit(classes[index].select("li").map {
                 DataItem.Class(it.text())
             })
         }

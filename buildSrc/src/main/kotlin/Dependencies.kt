@@ -1,11 +1,11 @@
 object Kotlin {
-    const val kotlinVersion = "1.3.50"
+    const val kotlinVersion = "1.3.61"
 }
 
 object BuildPlugins {
     private object Versions {
         const val buildToolsVersion = "3.5.1"
-        const val r8Version = "1.6.41"
+        const val r8Version = "1.6.42"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
