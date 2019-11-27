@@ -9,13 +9,29 @@
         android:id="@+id/navigation_cp"
         android:name="com.luca020400.classiperlo.ui.cp.CpFragment"
         android:label="@string/title_cp"
-        tools:layout="@layout/fragment_cp" />
+        tools:layout="@layout/fragment_cp">
+        <action
+            android:id="@+id/cp_to_webview"
+            app:destination="@+id/navigation_webview">
+            <argument
+                android:name="url"
+                app:argType="string" />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.luca020400.classiperlo.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/dashboard_to_webview"
+            app:destination="@+id/navigation_webview">
+            <argument
+                android:name="url"
+                app:argType="string" />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -27,5 +43,9 @@
         android:id="@+id/navigation_webview"
         android:name="com.luca020400.classiperlo.ui.webview.WebviewFragment"
         android:label="@string/title_webview"
-        tools:layout="@layout/fragment_webview" />
+        tools:layout="@layout/fragment_webview">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>

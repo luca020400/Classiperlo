@@ -13,12 +13,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.luca020400.classiperlo.MainActivity
 import com.luca020400.classiperlo.R
 
 class WebviewFragment : Fragment() {
 
     private val cpViewModel by viewModels<WebviewViewModel>()
+    private val webviewFragmentArgs by navArgs<WebviewFragmentArgs>()
     private lateinit var webView: WebView
 
     override fun onCreateView(
@@ -63,7 +65,8 @@ class WebviewFragment : Fragment() {
         cpViewModel.url.observe(viewLifecycleOwner, Observer {
             webView.loadUrl("http://www.classiperlo.altervista.org/$it")
         })
-        cpViewModel.url.value = arguments?.getString("url")
+
+        cpViewModel.url.value = webviewFragmentArgs.url
         return root
     }
 }
