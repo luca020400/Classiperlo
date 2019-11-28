@@ -59,7 +59,6 @@ class WebviewFragment : Fragment() {
                 useWideViewPort = true
                 setAppCacheEnabled(true)
                 setAppCachePath(context.getDir("appcache", Context.MODE_PRIVATE).path)
-                setGeolocationEnabled(true)
             }
         }
 
