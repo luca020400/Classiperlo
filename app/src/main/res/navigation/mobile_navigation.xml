@@ -15,7 +15,7 @@
             app:destination="@+id/navigation_webview">
             <argument
                 android:name="url"
-                app:argType="string" />
+                app:argType="com.luca020400.classiperlo.classes.Url" />
         </action>
     </fragment>
 
@@ -29,7 +29,7 @@
             app:destination="@+id/navigation_webview">
             <argument
                 android:name="url"
-                app:argType="string" />
+                app:argType="com.luca020400.classiperlo.classes.Url" />
         </action>
     </fragment>
 
@@ -46,6 +46,6 @@
         tools:layout="@layout/fragment_webview">
         <argument
             android:name="url"
-            app:argType="string" />
+            app:argType="com.luca020400.classiperlo.classes.Url" />
     </fragment>
 </navigation>

@@ -63,7 +63,11 @@ class WebviewFragment : Fragment() {
         }
 
         webviewViewModel.url.observe(viewLifecycleOwner, Observer {
-            webView.loadUrl("http://www.classiperlo.altervista.org/$it")
+            if (it.absolute) {
+                webView.loadUrl(it.url)
+            } else {
+                webView.loadUrl("http://www.classiperlo.altervista.org/${it.url}")
+            }
         })
         webviewViewModel.url.value = webviewFragmentArgs.url
         return root
