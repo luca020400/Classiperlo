@@ -6,8 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.luca020400.classiperlo.R
 import com.luca020400.classiperlo.classes.DataItem
 
-class DashboardAdapter :
-    RecyclerView.Adapter<DashboardClassHolder>() {
+class DashboardAdapter : RecyclerView.Adapter<DashboardClassHolder>() {
     private val _data = mutableListOf<DataItem>()
     var data: Collection<DataItem>
         set(data) {

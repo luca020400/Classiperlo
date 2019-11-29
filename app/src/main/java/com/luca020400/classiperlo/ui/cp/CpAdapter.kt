@@ -6,8 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.luca020400.classiperlo.R
 import com.luca020400.classiperlo.classes.DataItem
 
-class CpAdapter :
-    RecyclerView.Adapter<CpClassHolder>() {
+class CpAdapter : RecyclerView.Adapter<CpClassHolder>() {
     private val _data = mutableListOf<DataItem>()
     var data: Collection<DataItem>
         set(data) {
