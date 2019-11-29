@@ -4,6 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.luca020400.classiperlo.classes.Url
 
-class WebviewViewModel : ViewModel() {
+class WebViewViewModel : ViewModel() {
     val url = MutableLiveData<Url>()
 }

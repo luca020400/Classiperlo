@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/navigation_webview"
-        android:name="com.luca020400.classiperlo.ui.webview.WebviewFragment"
+        android:name="com.luca020400.classiperlo.ui.webview.WebViewFragment"
         android:label="@string/title_webview"
         tools:layout="@layout/fragment_webview">
         <argument
