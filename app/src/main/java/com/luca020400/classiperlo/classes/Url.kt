@@ -4,7 +4,7 @@ import java.io.Serializable
 
 data class Url(val url: String, var absolute: Boolean = false) : Serializable {
     init {
-        if (!url.contains("classiperlo.altervista.org")) {
+        if (url.startsWith("http")) {
             absolute = true
         }
     }
