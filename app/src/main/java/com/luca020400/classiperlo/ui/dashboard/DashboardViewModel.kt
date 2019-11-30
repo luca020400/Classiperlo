@@ -12,6 +12,6 @@ class DashboardViewModel : ViewModel() {
         val doc = Jsoup.connect("http://www.classiperlo.altervista.org/radar.html").get()
         emit(doc.select("body > ul").reversed().first().select("li").map {
             DataItem(it.text(), Url(it.select("a").attr("href")))
-        })
+        }.toMutableList())
     }
 }

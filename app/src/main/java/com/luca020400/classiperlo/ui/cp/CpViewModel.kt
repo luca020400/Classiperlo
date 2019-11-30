@@ -12,6 +12,6 @@ class CpViewModel : ViewModel() {
         val doc = Jsoup.connect("http://www.classiperlo.altervista.org/index.html").get()
         emit(doc.select("#cssmenu > ul > li").drop(1).map {
             DataItem(it.text(), Url(it.select("a").attr("href")))
-        })
+        }.toMutableList())
     }
 }

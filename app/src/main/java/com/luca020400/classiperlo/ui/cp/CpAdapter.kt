@@ -7,15 +7,13 @@ import com.luca020400.classiperlo.R
 import com.luca020400.classiperlo.classes.DataItem
 
 class CpAdapter : RecyclerView.Adapter<CpClassHolder>() {
-    private val _data = mutableListOf<DataItem>()
-    var data: Collection<DataItem>
-        set(data) {
-            _data.clear()
-            _data.addAll(data)
+    var data = mutableListOf<DataItem>()
+        set(value) {
+            field.clear()
+            field.addAll(value)
 
             notifyDataSetChanged()
         }
-        get() = _data
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CpClassHolder(
         LayoutInflater.from(parent.context).inflate(
@@ -26,7 +24,7 @@ class CpAdapter : RecyclerView.Adapter<CpClassHolder>() {
     )
 
     override fun onBindViewHolder(holder: CpClassHolder, position: Int) =
-        holder.bind(_data[position])
+        holder.bind(data[position])
 
-    override fun getItemCount() = _data.size
+    override fun getItemCount() = data.size
 }

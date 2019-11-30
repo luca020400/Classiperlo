@@ -7,15 +7,13 @@ import com.luca020400.classiperlo.R
 import com.luca020400.classiperlo.classes.DataItem
 
 class DashboardAdapter : RecyclerView.Adapter<DashboardClassHolder>() {
-    private val _data = mutableListOf<DataItem>()
-    var data: Collection<DataItem>
-        set(data) {
-            _data.clear()
-            _data.addAll(data)
+    var data = mutableListOf<DataItem>()
+        set(value) {
+            field.clear()
+            field.addAll(value)
 
             notifyDataSetChanged()
         }
-        get() = _data
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = DashboardClassHolder(
         LayoutInflater.from(parent.context).inflate(
@@ -26,7 +24,7 @@ class DashboardAdapter : RecyclerView.Adapter<DashboardClassHolder>() {
     )
 
     override fun onBindViewHolder(holder: DashboardClassHolder, position: Int) =
-        holder.bind(_data[position])
+        holder.bind(data[position])
 
-    override fun getItemCount() = _data.size
+    override fun getItemCount() = data.size
 }
