@@ -5,14 +5,12 @@ object Kotlin {
 object BuildPlugins {
     private object Versions {
         const val buildToolsVersion = "3.5.1"
-        const val r8Version = "1.6.42"
         const val safeArgsVersion = "2.1.0"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
     const val kotlinGradlePlugin =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.kotlinVersion}"
-    const val r8GradlePlugin = "com.android.tools:r8:${Versions.r8Version}"
     const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.safeArgsVersion}"
     const val androidApplication = "com.android.application"
     const val kotlinAndroid = "kotlin-android"
