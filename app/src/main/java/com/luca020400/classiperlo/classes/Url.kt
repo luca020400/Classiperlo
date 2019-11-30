@@ -1,5 +1,7 @@
 package com.luca020400.classiperlo.classes
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-data class Url(val url: String, val absolute: Boolean = url.startsWith("http")) : Serializable
+@Parcelize
+data class Url(val url: String, val absolute: Boolean = url.startsWith("http")) : Parcelable
