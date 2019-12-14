@@ -40,6 +40,7 @@ object Libraries {
         const val navigation = "2.2.0-rc02"
         const val jsoup = "1.12.1"
         const val firebaseAnalyticsVersion = "17.2.0"
+        const val firebaseMessagingVersion = "20.1.0"
         const val fabricCrashlyticsVersion = "2.10.1"
     }
 
@@ -56,5 +57,6 @@ object Libraries {
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     const val jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics:${Versions.firebaseAnalyticsVersion}"
+    const val firebaseMessaging = "com.google.firebase:firebase-messaging:${Versions.firebaseMessagingVersion}"
     const val fabricCrashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.fabricCrashlyticsVersion}"
 }

@@ -64,6 +64,7 @@ dependencies {
 
     // GMS
     implementation(Libraries.firebaseAnalytics)
+    implementation(Libraries.firebaseMessaging)
 
     // Crashlytics
     implementation(Libraries.fabricCrashlytics)

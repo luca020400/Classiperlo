@@ -23,4 +23,5 @@
     <string name="download_message">Do you want to download %1$s?</string>
     <!-- Download dialog: button that starts the download -->
     <string name="download_positive">Download</string>
+    <string name="default_notification_channel_id">Notifiche</string>
 </resources>
