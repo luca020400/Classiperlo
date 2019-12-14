@@ -59,6 +59,7 @@ class WebViewFragment : Fragment() {
                 useWideViewPort = true
                 setAppCacheEnabled(true)
                 setAppCachePath(context.getDir("appcache", Context.MODE_PRIVATE).path)
+                userAgentString += "-classiperlo"
             }
         }
 
