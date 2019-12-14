@@ -3,6 +3,7 @@ plugins {
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.kotlinSafeArgs)
+    id(BuildPlugins.gmsPlugin)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -59,4 +60,7 @@ dependencies {
 
     // jsoup
     implementation(Libraries.jsoup)
+
+    // GMS
+    implementation(Libraries.firebaseAnalytics)
 }

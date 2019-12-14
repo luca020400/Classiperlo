@@ -6,20 +6,23 @@ object BuildPlugins {
     private object Versions {
         const val buildToolsVersion = "3.5.1"
         const val safeArgsVersion = "2.1.0"
+        const val gmsVersion = "4.3.2"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
     const val kotlinGradlePlugin =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.kotlinVersion}"
     const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.safeArgsVersion}"
+    const val gms = "com.google.gms:google-services:${Versions.gmsVersion}"
     const val androidApplication = "com.android.application"
     const val kotlinAndroid = "kotlin-android"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
     const val kotlinSafeArgs = "androidx.navigation.safeargs.kotlin"
+    const val gmsPlugin = "com.google.gms.google-services"
 }
 
 object AndroidSdk {
-    const val min = 15
+    const val min = 16
     const val compile = 29
     const val target = compile
 }
@@ -33,6 +36,7 @@ object Libraries {
         const val material = "1.0.0"
         const val navigation = "2.2.0-rc02"
         const val jsoup = "1.12.1"
+        const val firebaseAnalyticsVersion = "17.2.0"
     }
 
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Kotlin.kotlinVersion}"
@@ -47,4 +51,5 @@ object Libraries {
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     const val jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
+    const val firebaseAnalytics = "com.google.firebase:firebase-analytics:${Versions.firebaseAnalyticsVersion}"
 }
