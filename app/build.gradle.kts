@@ -4,6 +4,7 @@ plugins {
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.kotlinSafeArgs)
     id(BuildPlugins.gmsPlugin)
+    id(BuildPlugins.fabricPlugin)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -63,4 +64,7 @@ dependencies {
 
     // GMS
     implementation(Libraries.firebaseAnalytics)
+
+    // Crashlytics
+    implementation(Libraries.fabricCrashlytics)
 }
