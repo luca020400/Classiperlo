@@ -28,9 +28,10 @@ class ContactFragment : Fragment() {
             }
             dialog.show(childFragmentManager, "ContactDialogFragment")
         }
+        val contactView: ContactView = root.findViewById(R.id.view_contact)
         contactViewModel.option.observe(viewLifecycleOwner, Observer {
             textView.text = resources.getStringArray(R.array.contact_options)[it.ordinal]
-            // Create the secondary fragment
+            contactView.option = it
         })
         return root
     }

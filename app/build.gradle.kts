@@ -68,4 +68,7 @@ dependencies {
 
     // Crashlytics
     implementation(Libraries.fabricCrashlytics)
+
+    // OkHttp
+    implementation(Libraries.okHttp)
 }

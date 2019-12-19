@@ -42,6 +42,7 @@ object Libraries {
         const val firebaseAnalyticsVersion = "17.2.0"
         const val firebaseMessagingVersion = "20.1.0"
         const val fabricCrashlyticsVersion = "2.10.1"
+        const val okHttpVersion = "4.2.1"
     }
 
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Kotlin.kotlinVersion}"
@@ -59,4 +60,5 @@ object Libraries {
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics:${Versions.firebaseAnalyticsVersion}"
     const val firebaseMessaging = "com.google.firebase:firebase-messaging:${Versions.firebaseMessagingVersion}"
     const val fabricCrashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.fabricCrashlyticsVersion}"
+    const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttpVersion}"
 }
