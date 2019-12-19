@@ -2,7 +2,8 @@
     <string name="app_name">Classiperlo</string>
     <string name="title_cp">Classiperlo</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_contact">Contact</string>
+    <string name="title_options">Opzioni</string>
     <string name="title_webview">Webview</string>
 
     <!-- Dialog action: dismiss -->
@@ -24,4 +25,10 @@
     <!-- Download dialog: button that starts the download -->
     <string name="download_positive">Download</string>
     <string name="default_notification_channel_id">Notifiche</string>
+
+    <!-- Option dialog -->
+    <string name="contact_dialog_title">Scegli una modalità</string>
+    <string name="contact_message">Messaggio</string>
+    <string name="contact_message_no_mail">Messaggio senza mail</string>
+    <string name="contact_message_anonymous">Messaggio anonimo</string>
 </resources>

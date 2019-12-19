@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="contact_options">
+        <item>@string/contact_message</item>
+        <item>@string/contact_message_no_mail</item>
+        <item>@string/contact_message_anonymous</item>
+    </string-array>
+</resources>
