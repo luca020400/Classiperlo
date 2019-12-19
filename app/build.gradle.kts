@@ -20,8 +20,8 @@ android {
         applicationId = "com.luca020400.classiperlo"
         minSdkVersion(AndroidSdk.min)
         targetSdkVersion(AndroidSdk.target)
-        versionCode = 3
-        versionName = "1.2"
+        versionCode = 5
+        versionName = "1.5"
     }
 
     compileOptions {
