@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
+import com.luca020400.classiperlo.BuildConfig
 import com.luca020400.classiperlo.R
 import okhttp3.*
 import java.io.IOException
@@ -84,12 +85,13 @@ class ContactView @JvmOverloads constructor(
             // Build the RequestBody
             val requestBody = MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("parola", "abracadabra")
-                .addFormDataPart("name", nameTextInputLayout.editText?.text.toString())
-                .addFormDataPart("email", mailTextInputLayout.editText?.text.toString())
-                .addFormDataPart("testo", textTextInputLayout.editText?.text.toString())
-                .addFormDataPart("selettore", selettore)
+                .addFormDataPart("app", BuildConfig.VERSION_NAME)
                 .addFormDataPart("autorizzo", "SI")
+                .addFormDataPart("email", mailTextInputLayout.editText?.text.toString())
+                .addFormDataPart("name", nameTextInputLayout.editText?.text.toString())
+                .addFormDataPart("parola", "abracadabra")
+                .addFormDataPart("selettore", selettore)
+                .addFormDataPart("testo", textTextInputLayout.editText?.text.toString())
                 .build()
 
             val request =
