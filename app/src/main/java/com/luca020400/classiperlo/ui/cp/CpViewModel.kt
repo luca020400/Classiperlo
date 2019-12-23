@@ -20,7 +20,7 @@ class CpViewModel : ViewModel() {
                 if (!it.isSuccessful) throw Exception("Unexpected code $it")
 
                 val doc = Jsoup.parse(it.body?.string())
-                emit(doc.select("#cssmenu > ul > li").drop(1).map { element ->
+                emit(doc.select("#cssmenu > ul > li").filter { it.text() != "Contatto" }.map { element ->
                     DataItem(element.text(), Url(element.select("a").attr("href")))
                 }.toMutableList())
             }
