@@ -47,10 +47,16 @@ class ContactView @JvmOverloads constructor(
         View.inflate(context, R.layout.view_contact, this)
         nameTextInputLayout = findViewById(R.id.view_contact_name)
         mailTextInputLayout = findViewById(R.id.view_contact_mail)
+        val passwordTextInputLayout: TextInputLayout = findViewById(R.id.view_contact_password)
         val textTextInputLayout: TextInputLayout = findViewById(R.id.view_contact_text)
         val materialButton: MaterialButton = findViewById(R.id.view_contact_button)
         materialButton.setOnClickListener {
             var error = false
+            if ("abracadabra" != passwordTextInputLayout.editText?.text.toString()) {
+                passwordTextInputLayout.error = "Password errata"
+                return@setOnClickListener
+            }
+
             if (nameTextInputLayout.editText?.text.isNullOrBlank() && option != ContactViewModel.Options.AnonymousMessage) {
                 nameTextInputLayout.error = "Il nome e cognome non possono essere vuoti"
                 error = true
@@ -98,11 +104,22 @@ class ContactView @JvmOverloads constructor(
                 Request.Builder().url("http://www.classiperlo.altervista.org/upload/upload.php")
                     .post(requestBody).build()
 
-            Toast.makeText(context, context.getString(R.string.contact_done), Toast.LENGTH_LONG)
-                .show()
             client.newCall(request).enqueue(object : Callback {
-                override fun onFailure(call: Call, e: IOException) {}
-                override fun onResponse(call: Call, response: Response) {}
+                override fun onFailure(call: Call, e: IOException) {
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.contact_error_post),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.contact_done),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             })
         }
     }

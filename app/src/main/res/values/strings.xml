@@ -40,4 +40,7 @@
     <string name="contact_message_name_hint">Nome e cognome</string>
     <string name="contact_message_mail_hint">Mail</string>
     <string name="contact_done">Messaggio inviato</string>
+    <string name="contact_message_password_hint">Password</string>
+    <string name="contact_error_password">Password errata</string>
+    <string name="contact_error_post">Contatto non riuscito</string>
 </resources>
