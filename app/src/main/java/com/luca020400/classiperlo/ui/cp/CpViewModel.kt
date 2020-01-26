@@ -13,7 +13,7 @@ class CpViewModel : ViewModel() {
     private val client = OkHttpClient()
 
     val data = liveData(Dispatchers.IO) {
-        val request = Request.Builder().url("http://www.classiperlo.altervista.org/index.html")
+        val request = Request.Builder().url("http://www.classiperlo.altervista.org")
             .get().build()
         try {
             client.newCall(request).execute().use {
