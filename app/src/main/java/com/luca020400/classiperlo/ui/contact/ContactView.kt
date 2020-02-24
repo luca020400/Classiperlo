@@ -104,7 +104,7 @@ class ContactView @JvmOverloads constructor(
                 .build()
 
             val request =
-                Request.Builder().url("http://www.classiperlo.altervista.org/upload/upload.php")
+                Request.Builder().url("http://www.classiperlo.altervista.org/upload/upload2.php")
                     .post(requestBody).build()
 
             client.newCall(request).enqueue(object : Callback {
