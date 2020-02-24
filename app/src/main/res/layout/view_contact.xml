@@ -51,7 +51,8 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/contact_message_text_hint">
+        android:hint="@string/contact_message_text_hint"
+        android:inputType="textMultiLine">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
