@@ -5,10 +5,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.luca020400.classiperlo.R
 
-class ContactDialogFragment(private val listener: (Int) -> Unit) : DialogFragment() {
+class ContactPickerDialogFragment(private val listener: (Int) -> Unit) : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?) = activity?.let {
         val builder = AlertDialog.Builder(it)
-        builder.setTitle(R.string.contact_dialog_title)
+        builder.setTitle(R.string.contact_picker_dialog_title)
             .setItems(R.array.contact_options) { _, which ->
                 // The 'which' argument contains the index position
                 // of the selected item

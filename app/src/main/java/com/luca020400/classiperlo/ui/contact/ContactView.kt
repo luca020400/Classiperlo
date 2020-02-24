@@ -1,6 +1,8 @@
 package com.luca020400.classiperlo.ui.contact
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import android.view.View
 import android.widget.Toast
@@ -18,6 +20,7 @@ class ContactView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
+    var callback: (String, String) -> Unit = { _: String, _: String -> }
     var option = ContactViewModel.Options.Message
         set(value) {
             field = value
@@ -106,21 +109,40 @@ class ContactView @JvmOverloads constructor(
 
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    Toast.makeText(
-                        context,
-                        context.getString(R.string.contact_error_post),
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Handler(Looper.getMainLooper()).post {
+                        Toast.makeText(
+                            context,
+                            context.getString(R.string.contact_error_post),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    Toast.makeText(
-                        context,
-                        context.getString(R.string.contact_done),
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Handler(Looper.getMainLooper()).post {
+                        Toast.makeText(
+                            context,
+                            context.getString(R.string.contact_done),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    callback(
+                        mailTextInputLayout.editText?.text.toString(),
+                        nameTextInputLayout.editText?.text.toString()
+                    )
                 }
             })
+        }
+
+        val sharedPreferences = context.getSharedPreferences("data", Context.MODE_PRIVATE)
+        if (sharedPreferences.getBoolean("saved", false)) {
+            passwordTextInputLayout.editText?.setText("abracadabra")
+            nameTextInputLayout.editText?.setText(
+                sharedPreferences.getString("name", "")
+            )
+            mailTextInputLayout.editText?.setText(
+                sharedPreferences.getString("mail", "")
+            )
         }
     }
 }
