@@ -33,11 +33,11 @@ object AndroidSdk {
 object Libraries {
     private object Versions {
         const val appcompat = "1.1.0"
-        const val constraintLayout = "2.0.0-beta3"
+        const val constraintLayout = "2.0.0-beta4"
         const val ktx = "1.1.0"
-        const val lifecycle = "2.2.0-rc02"
+        const val lifecycle = "2.2.0"
         const val material = "1.0.0"
-        const val navigation = "2.2.0-rc02"
+        const val navigation = "2.2.0"
         const val jsoup = "1.12.1"
         const val firebaseAnalyticsVersion = "17.2.0"
         const val firebaseMessagingVersion = "20.1.0"
