@@ -13,7 +13,8 @@ object BuildPlugins {
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
     const val kotlinGradlePlugin =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.kotlinVersion}"
-    const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.safeArgsVersion}"
+    const val safeArgs =
+        "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.safeArgsVersion}"
     const val gms = "com.google.gms:google-services:${Versions.gmsVersion}"
     const val fabric = "io.fabric.tools:gradle:${Versions.fabricVersion}"
     const val androidApplication = "com.android.application"
@@ -34,15 +35,15 @@ object Libraries {
     private object Versions {
         const val appcompat = "1.1.0"
         const val constraintLayout = "2.0.0-beta4"
-        const val ktx = "1.1.0"
+        const val ktx = "1.2.0"
         const val lifecycle = "2.2.0"
-        const val material = "1.0.0"
+        const val material = "1.1.0"
         const val navigation = "2.2.0"
         const val jsoup = "1.12.1"
-        const val firebaseAnalyticsVersion = "17.2.0"
-        const val firebaseMessagingVersion = "20.1.0"
-        const val fabricCrashlyticsVersion = "2.10.1"
-        const val okHttpVersion = "4.2.1"
+        const val firebaseAnalytics = "17.2.0"
+        const val firebaseMessaging = "20.1.0"
+        const val fabricCrashlytics = "2.10.1"
+        const val okHttp = "4.4.0"
     }
 
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Kotlin.kotlinVersion}"
@@ -57,8 +58,11 @@ object Libraries {
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     const val jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
-    const val firebaseAnalytics = "com.google.firebase:firebase-analytics:${Versions.firebaseAnalyticsVersion}"
-    const val firebaseMessaging = "com.google.firebase:firebase-messaging:${Versions.firebaseMessagingVersion}"
-    const val fabricCrashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.fabricCrashlyticsVersion}"
-    const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttpVersion}"
+    const val firebaseAnalytics =
+        "com.google.firebase:firebase-analytics:${Versions.firebaseAnalytics}"
+    const val firebaseMessaging =
+        "com.google.firebase:firebase-messaging:${Versions.firebaseMessaging}"
+    const val fabricCrashlytics =
+        "com.crashlytics.sdk.android:crashlytics:${Versions.fabricCrashlytics}"
+    const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
 }
