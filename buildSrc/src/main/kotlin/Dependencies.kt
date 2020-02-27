@@ -4,7 +4,7 @@ object Kotlin {
 
 object BuildPlugins {
     private object Versions {
-        const val buildToolsVersion = "3.5.1"
+        const val buildToolsVersion = "3.6.0"
         const val safeArgsVersion = "2.1.0"
         const val gmsVersion = "4.3.2"
         const val fabricVersion = "1.31.2"
