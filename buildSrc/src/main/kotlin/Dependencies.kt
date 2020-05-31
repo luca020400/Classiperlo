@@ -1,13 +1,13 @@
 object Kotlin {
-    const val kotlinVersion = "1.3.61"
+    const val kotlinVersion = "1.3.71"
 }
 
 object BuildPlugins {
     private object Versions {
-        const val buildToolsVersion = "3.6.0"
-        const val safeArgsVersion = "2.1.0"
-        const val gmsVersion = "4.3.2"
-        const val fabricVersion = "1.31.2"
+        const val buildToolsVersion = "4.0.0"
+        const val safeArgsVersion = "2.2.0"
+        const val gmsVersion = "4.3.3"
+        const val firebaseVersion = "2.1.1"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
@@ -16,13 +16,14 @@ object BuildPlugins {
     const val safeArgs =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.safeArgsVersion}"
     const val gms = "com.google.gms:google-services:${Versions.gmsVersion}"
-    const val fabric = "io.fabric.tools:gradle:${Versions.fabricVersion}"
+    const val firebase =
+        "com.google.firebase:firebase-crashlytics-gradle:${Versions.firebaseVersion}"
     const val androidApplication = "com.android.application"
     const val kotlinAndroid = "kotlin-android"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
     const val kotlinSafeArgs = "androidx.navigation.safeargs.kotlin"
     const val gmsPlugin = "com.google.gms.google-services"
-    const val fabricPlugin = "io.fabric"
+    const val firebasePlugin = "com.google.firebase.crashlytics"
 }
 
 object AndroidSdk {
@@ -34,18 +35,21 @@ object AndroidSdk {
 object Libraries {
     private object Versions {
         const val appcompat = "1.1.0"
-        const val constraintLayout = "2.0.0-beta4"
-        const val ktx = "1.2.0"
+        const val constraintLayout = "2.0.0-beta6"
+        const val ktx = "1.3.0"
         const val lifecycle = "2.2.0"
         const val material = "1.1.0"
-        const val navigation = "2.2.0"
-        const val jsoup = "1.12.1"
-        const val firebaseAnalytics = "17.2.0"
-        const val firebaseMessaging = "20.1.0"
-        const val fabricCrashlytics = "2.10.1"
-        const val okHttp = "4.4.0"
+        const val navigation = "2.2.2"
+        const val preference = "1.1.1"
+        const val jsoup = "1.13.1"
+        const val firebaseAnalytics = "17.4.2"
+        const val firebaseCrashlytics = "17.0.0"
+        const val firebaseMessaging = "20.2.0"
+        const val okHttp = "4.7.2"
+        const val multidex = "2.0.1"
     }
 
+    const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Kotlin.kotlinVersion}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     const val constraintLayout =
@@ -57,12 +61,13 @@ object Libraries {
     const val navigationFragmentKtx =
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+    const val preferenceKtx = "androidx.preference:preference-ktx:${Versions.preference}"
     const val jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
     const val firebaseAnalytics =
         "com.google.firebase:firebase-analytics:${Versions.firebaseAnalytics}"
+    const val firebaseCrashlytics =
+        "com.google.firebase:firebase-crashlytics:${Versions.firebaseCrashlytics}"
     const val firebaseMessaging =
         "com.google.firebase:firebase-messaging:${Versions.firebaseMessaging}"
-    const val fabricCrashlytics =
-        "com.crashlytics.sdk.android:crashlytics:${Versions.fabricCrashlytics}"
     const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
 }

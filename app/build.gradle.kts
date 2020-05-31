@@ -4,7 +4,7 @@ plugins {
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.kotlinSafeArgs)
     id(BuildPlugins.gmsPlugin)
-    id(BuildPlugins.fabricPlugin)
+    id(BuildPlugins.firebasePlugin)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -20,8 +20,9 @@ android {
         applicationId = "com.luca020400.classiperlo"
         minSdkVersion(AndroidSdk.min)
         targetSdkVersion(AndroidSdk.target)
-        versionCode = 13
-        versionName = "1.13"
+        versionCode = 14
+        versionName = "2.0"
+        multiDexEnabled = true
     }
 
     compileOptions {
@@ -42,6 +43,9 @@ android {
 }
 
 dependencies {
+    // Multidex
+    implementation(Libraries.multidex)
+
     // Kotlin
     implementation(Libraries.kotlinStdLib)
 
@@ -51,6 +55,7 @@ dependencies {
     implementation(Libraries.ktxCore)
     implementation(Libraries.lifecycle)
     implementation(Libraries.liveData)
+    implementation(Libraries.preferenceKtx)
 
     // Material
     implementation(Libraries.material)
@@ -64,11 +69,11 @@ dependencies {
 
     // GMS
     implementation(Libraries.firebaseAnalytics)
+    implementation(Libraries.firebaseCrashlytics)
     implementation(Libraries.firebaseMessaging)
-
-    // Crashlytics
-    implementation(Libraries.fabricCrashlytics)
 
     // OkHttp
     implementation(Libraries.okHttp)
+
+    implementation("com.heinrichreimersoftware:material-intro:2.0.0")
 }

@@ -19,87 +19,39 @@ class ContactView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
-
-    var callback: (String, String) -> Unit = { _: String, _: String -> }
     var option = ContactViewModel.Options.Message
-        set(value) {
-            field = value
-
-            when (field) {
-                ContactViewModel.Options.Message -> {
-                    nameTextInputLayout.visibility = View.VISIBLE
-                    mailTextInputLayout.visibility = View.VISIBLE
-                }
-                ContactViewModel.Options.NoMailMessage -> {
-                    nameTextInputLayout.visibility = View.VISIBLE
-                    mailTextInputLayout.visibility = View.GONE
-                }
-                ContactViewModel.Options.AnonymousMessage -> {
-                    nameTextInputLayout.visibility = View.GONE
-                    mailTextInputLayout.visibility = View.GONE
-                }
-            }
-        }
-
-    private val nameTextInputLayout: TextInputLayout
-    private val mailTextInputLayout: TextInputLayout
 
     private val client = OkHttpClient()
 
     init {
         View.inflate(context, R.layout.view_contact, this)
-        nameTextInputLayout = findViewById(R.id.view_contact_name)
-        mailTextInputLayout = findViewById(R.id.view_contact_mail)
-        val passwordTextInputLayout: TextInputLayout = findViewById(R.id.view_contact_password)
         val textTextInputLayout: TextInputLayout = findViewById(R.id.view_contact_text)
-        val materialButton: MaterialButton = findViewById(R.id.view_contact_button)
+        val materialButton: MaterialButton = findViewById(R.id.view_setup_button)
         materialButton.setOnClickListener {
-            var error = false
-            if ("abracadabra" != passwordTextInputLayout.editText?.text.toString()) {
-                passwordTextInputLayout.error = "Password errata"
-                return@setOnClickListener
-            }
-
-            if (nameTextInputLayout.editText?.text.isNullOrBlank() && option != ContactViewModel.Options.AnonymousMessage) {
-                nameTextInputLayout.error = "Il nome e cognome non possono essere vuoti"
-                error = true
-            } else {
-                nameTextInputLayout.error = null
-            }
-
-            if (mailTextInputLayout.editText?.text.isNullOrBlank() && option == ContactViewModel.Options.Message) {
-                mailTextInputLayout.error = "La mail non può essere vuota"
-                error = true
-            } else {
-                mailTextInputLayout.error = null
-            }
-
             if (textTextInputLayout.editText?.text.isNullOrBlank()) {
                 textTextInputLayout.error = "Il messaggio non può essere vuoto"
-                error = true
+                return@setOnClickListener
             } else {
                 textTextInputLayout.error = null
             }
 
-            if (error) {
-                return@setOnClickListener
-            }
-
-            val selettore = when (option) {
+            val selector = when (option) {
                 ContactViewModel.Options.Message -> "Messaggio"
                 ContactViewModel.Options.NoMailMessage -> "Nomail"
                 else -> "Anonimo"
             }
+
+            val sharedPreferences = context.getSharedPreferences("data", Context.MODE_PRIVATE)
 
             // Build the RequestBody
             val requestBody = MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("app", BuildConfig.VERSION_NAME)
                 .addFormDataPart("autorizzo", "SI")
-                .addFormDataPart("email", mailTextInputLayout.editText?.text.toString())
-                .addFormDataPart("name", nameTextInputLayout.editText?.text.toString())
+                .addFormDataPart("email", sharedPreferences.getString("mail", "unknown")!!)
+                .addFormDataPart("name", sharedPreferences.getString("name", "unknown")!!)
                 .addFormDataPart("parola", "abracadabra")
-                .addFormDataPart("selettore", selettore)
+                .addFormDataPart("selettore", selector)
                 .addFormDataPart("testo", textTextInputLayout.editText?.text.toString())
                 .build()
 
@@ -126,23 +78,8 @@ class ContactView @JvmOverloads constructor(
                             Toast.LENGTH_LONG
                         ).show()
                     }
-                    callback(
-                        mailTextInputLayout.editText?.text.toString(),
-                        nameTextInputLayout.editText?.text.toString()
-                    )
                 }
             })
-        }
-
-        val sharedPreferences = context.getSharedPreferences("data", Context.MODE_PRIVATE)
-        if (sharedPreferences.getBoolean("saved", false)) {
-            passwordTextInputLayout.editText?.setText("abracadabra")
-            nameTextInputLayout.editText?.setText(
-                sharedPreferences.getString("name", "")
-            )
-            mailTextInputLayout.editText?.setText(
-                sharedPreferences.getString("mail", "")
-            )
         }
     }
 }

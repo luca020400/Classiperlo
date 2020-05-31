@@ -1,6 +1,5 @@
 package com.luca020400.classiperlo.ui.contact
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,23 +29,6 @@ class ContactFragment : Fragment() {
             dialog.show(childFragmentManager, "ContactDialogFragment")
         }
         val contactView: ContactView = root.findViewById(R.id.view_contact)
-        contactView.callback = { name: String, mail: String ->
-            val sharedPreferences = context!!.getSharedPreferences(
-                "data",
-                Context.MODE_PRIVATE
-            )
-            if (!sharedPreferences.getBoolean("saved", false)) {
-                // Create an instance of the dialog fragment and show it
-                val dialog = ContactSaveDialogFragment {
-                    sharedPreferences.edit()
-                        .putString("name", name)
-                        .putString("mail", mail)
-                        .putBoolean("saved", true)
-                        .apply()
-                }
-                dialog.show(childFragmentManager, "ContactDialogFragment")
-            }
-        }
         contactViewModel.option.observe(viewLifecycleOwner, Observer {
             textView.text = resources.getStringArray(R.array.contact_options)[it.ordinal]
             contactView.option = it

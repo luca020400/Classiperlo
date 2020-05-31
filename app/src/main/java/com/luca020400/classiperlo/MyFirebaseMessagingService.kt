@@ -29,6 +29,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         super.onMessageReceived(remoteMessage)
     }
 
+    override fun onNewToken(token: String) {
+        Log.d(TAG, "Token: $token")
+        super.onNewToken(token)
+    }
+
     companion object {
         private const val TAG = "MyFirebaseMsgService"
     }

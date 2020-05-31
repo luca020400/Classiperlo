@@ -1,8 +1,8 @@
 package com.luca020400.classiperlo
 
-import android.Manifest
+import android.app.Activity
 import android.app.DownloadManager
-import android.content.pm.PackageManager
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -11,22 +11,23 @@ import android.webkit.MimeTypeMap
 import android.webkit.URLUtil
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.preference.PreferenceManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.snackbar.Snackbar
+import com.luca020400.classiperlo.ui.setup.SetupActivity
+
 
 class MainActivity : AppCompatActivity() {
     private val sTAG = MainActivity::class.java.simpleName
 
-    private val storagePermReq = 423
-
-    private var mWaitingDownloadFileName: String? = null
-    private var mWaitingDownloadUrl: String? = null
+    companion object {
+        const val REQUEST_CODE_INTRO = 1
+        const val PREF_KEY_FIRST_START = "PREF_KEY_FIRST_START"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,59 +44,40 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val firstStart =
+            PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(PREF_KEY_FIRST_START, true)
+
+        if (firstStart) {
+            val intent = Intent(this, SetupActivity::class.java)
+            startActivityForResult(intent, REQUEST_CODE_INTRO)
+        }
     }
 
-    override fun onRequestPermissionsResult(
+    override fun onActivityResult(
         requestCode: Int,
-        permissions: Array<String>,
-        results: IntArray
+        resultCode: Int,
+        data: Intent?
     ) {
-        val url = mWaitingDownloadUrl
-        when (requestCode) {
-            storagePermReq -> {
-                if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) && url != null) {
-                    downloadFileAsk(url, null, null)
-                } else {
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(
-                            this,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE
-                        )
-                    ) {
-                        AlertDialog.Builder(this)
-                            .setTitle(R.string.permission_error_title)
-                            .setMessage(R.string.permission_error_storage)
-                            .setCancelable(false)
-                            .setPositiveButton(
-                                getString(R.string.permission_error_ask_again)
-                            ) { _, _ -> requestStoragePermission() }
-                            .setNegativeButton(
-                                getString(R.string.dismiss)
-                            ) { dialog, _ -> dialog.dismiss() }
-                            .show()
-                    } else {
-                        Snackbar.make(
-                            findViewById(R.id.container),
-                            getString(R.string.permission_error_forever),
-                            Snackbar.LENGTH_LONG
-                        ).show()
-                    }
-                }
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_INTRO) {
+            if (resultCode == Activity.RESULT_OK) {
+                PreferenceManager.getDefaultSharedPreferences(this).edit()
+                    .putBoolean(PREF_KEY_FIRST_START, false)
+                    .apply()
+            } else {
+                PreferenceManager.getDefaultSharedPreferences(this).edit()
+                    .putBoolean(PREF_KEY_FIRST_START, true)
+                    .apply()
+                // User cancelled the intro so we'll finish this activity too.
+                finish()
             }
         }
     }
 
     fun downloadFileAsk(url: String, contentDisposition: String?, mimeType: String?) {
-        val fileName =
-            mWaitingDownloadFileName ?: URLUtil.guessFileName(url, contentDisposition, mimeType)
-
-        if (!hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            mWaitingDownloadFileName = fileName
-            mWaitingDownloadUrl = url
-            requestStoragePermission()
-            return
-        }
-        mWaitingDownloadFileName = null
-        mWaitingDownloadUrl = null
+        val fileName = URLUtil.guessFileName(url, contentDisposition, mimeType)
 
         AlertDialog.Builder(this)
             .setTitle(R.string.download_title)
@@ -132,15 +114,4 @@ class MainActivity : AppCompatActivity() {
         )
         getSystemService(this, DownloadManager::class.java)?.enqueue(request)
     }
-
-    private fun requestStoragePermission() {
-        val permissionArray = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        ActivityCompat.requestPermissions(this, permissionArray, storagePermReq)
-    }
-
-    private fun hasPermission(permission: String) =
-        ActivityCompat.checkSelfPermission(
-            this,
-            permission
-        ) == PackageManager.PERMISSION_GRANTED
 }
